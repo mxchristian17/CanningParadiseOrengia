@@ -1,4 +1,5 @@
 import React from 'react'
+import CartWidget from '../CartWidget/CartWidget';
 
 const Nav = () => {
     return (
@@ -43,6 +44,9 @@ const Nav = () => {
                             <a className="nav-link" href="#">Latas</a>
                         </li>
                     </ul>
+                    <div className="d-flex">
+                        <CartWidget></CartWidget>
+                    </div>
                 </div>
             </div>
         </nav>

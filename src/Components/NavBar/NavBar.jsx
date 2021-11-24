@@ -1,7 +1,7 @@
 import React from 'react'
 import CartWidget from '../CartWidget/CartWidget';
 
-const Nav = () => {
+const Nav = (props) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -45,7 +45,7 @@ const Nav = () => {
                         </li>
                     </ul>
                     <div className="d-flex">
-                        <CartWidget></CartWidget>
+                        <CartWidget badge={props.badge}></CartWidget>
                     </div>
                 </div>
             </div>

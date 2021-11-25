@@ -15,7 +15,7 @@ const Nav = (props) => {
                             <a className="nav-link active" aria-current="page" href="#/">Inicio</a>
                         </li>
                         <li className="nav-item dropdown px-2">
-                            <a className="nav-link dropdown-toggle" href="#/" id="maquinas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a className="nav-link dropdown-toggle" href="../#" id="maquinas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Máquinas
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="maquinas">
@@ -28,7 +28,7 @@ const Nav = (props) => {
                             </ul>
                         </li>
                         <li className="nav-item dropdown px-2">
-                            <a className="nav-link dropdown-toggle" href="#/" id="dispositivos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a className="nav-link dropdown-toggle" href="../#" id="dispositivos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Equipos de medición
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="dispositivos">

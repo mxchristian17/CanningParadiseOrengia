@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FooterContainer = (props) => {
     return (
@@ -9,10 +11,16 @@ const FooterContainer = (props) => {
                 </div>
                 <div>
                     <a href="#/" className="me-4 text-reset">
-                        <i className="fab fa-facebook-f"></i>
+                        <FontAwesomeIcon icon={faInstagram} />
                     </a>
                     <a href="#/" className="me-4 text-reset">
-                        <i className="fab fa-twitter"></i>
+                        <FontAwesomeIcon icon={faYoutube} />
+                    </a>
+                    <a href="#/" className="me-4 text-reset">
+                        <FontAwesomeIcon icon={faFacebookF} />
+                    </a>
+                    <a href="#/" className="me-4 text-reset">
+                        <FontAwesomeIcon icon={faTwitter} />
                     </a>
                 </div>
             </section>

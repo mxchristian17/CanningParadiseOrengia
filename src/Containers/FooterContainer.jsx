@@ -76,7 +76,8 @@ const FooterContainer = (props) => {
                                 <FontAwesomeIcon icon={faEnvelope} /> info@canningparadise.com
                             </p>
                             <p>
-                                <FontAwesomeIcon icon={faPhone} /> + 54 223 5377049
+                                <FontAwesomeIcon icon={faPhone} /> 
+                                <a className="text-reset text-decoration-none" href="whatsapp://send?text=Hola! Quiero hacerles una consulta&phone=+54 223 5377049&abid=+54 223 5377049">+ 54 223 5377049</a>
                             </p>
                         </div>
                     </div>

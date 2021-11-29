@@ -1,6 +1,7 @@
 import React from 'react';
 import { faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faHome, faIndustry, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 const FooterContainer = (props) => {
     return (
@@ -29,56 +30,53 @@ const FooterContainer = (props) => {
                     <div className="row mt-3">
                         <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                             <h6 className="text-uppercase fw-bold mb-4">
-                                <i className="fas fa-gem me-3"></i>Canning Paradise
+                                <FontAwesomeIcon icon={faIndustry} /> Canning Paradise
                             </h6>
                             <p>
-                                Canning Paradise te acerca todos los productos y servicios ...
+                                Canning Paradise te acerca todos los productos y servicios vinculados al enlatado para tu fábrica o punto de venta.
+                            </p>
+                            <p>
+                                Tenemos soluciones aptas para todas las escalas de producción. Desde líneas industriales hasta máquinas y dispositivos de uso personal.
                             </p>
                         </div>
                         <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                             <h6 className="text-uppercase fw-bold mb-4">
-                                Products
+                                Productos
                             </h6>
                             <p>
-                                <a href="#/" className="text-reset">Angular</a>
+                                <a href="#/" className="text-reset">Máquinas</a>
                             </p>
                             <p>
-                                <a href="#/" className="text-reset">React</a>
+                                <a href="#/" className="text-reset">Equipos de medición</a>
+                            </p>
+                            <p>
+                                <a href="#/" className="text-reset">Latas</a>
                             </p>
                         </div>
                         <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                             <h6 className="text-uppercase fw-bold mb-4">
-                                Usefull links
+                                Links útiles
                             </h6>
                             <p>
-                                <a href="#/" className="text-reset">Pricing</a>
+                                <a href="#/" className="text-reset">Términos y condiciones</a>
                             </p>
                             <p>
-                                <a href="#/" className="text-reset">Settings</a>
+                                <a href="#/" className="text-reset">Configuración</a>
                             </p>
                             <p>
-                                <a href="#/" className="text-reset">Orders</a>
-                            </p>
-                            <p>
-                                <a href="#/" className="text-reset">Help</a>
+                                <a href="#/" className="text-reset">Preguntas frecuentes</a>
                             </p>
                         </div>
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                             <h6 className="text-uppercase fw-bold mb-4">
-                                Contact
+                                Contacto
                             </h6>
-                            <p><i className="fas fa-home mx-3"></i>Mar del Plata, Buenos Aires, Argentina</p>
+                            <p><FontAwesomeIcon icon={faHome} /> Mar del Plata, Buenos Aires, Argentina</p>
                             <p>
-                                <i className="fas fa-envelope me-3"></i>
-                                info@canningparadise.com
+                                <FontAwesomeIcon icon={faEnvelope} /> info@canningparadise.com
                             </p>
                             <p>
-                                <i className="fas fa-phone me-3"></i>
-                                + 54 223 5377049
-                            </p>
-                            <p>
-                                <i className="fas fa-print me-3"></i>
-                                + 54 223 5377049
+                                <FontAwesomeIcon icon={faPhone} /> + 54 223 5377049
                             </p>
                         </div>
                     </div>

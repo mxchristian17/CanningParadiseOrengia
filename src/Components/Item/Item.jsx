@@ -10,7 +10,7 @@ const Item = (props) => {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <img src={"Images/Products/" + props.item.img} alt={props.item.img} className="w-50 mb-1" />
+                        <img src={"Images/Products/" + props.item.img} alt={props.item.img} className="w-50 mb-1 rounded-circle" />
                     </div>
                 </div>
                 <div className="row">

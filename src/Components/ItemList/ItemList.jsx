@@ -6,18 +6,18 @@ import Item from '../Item/Item'
 const ItemList = (props) => {
     const [listProduct, setListProduct] = useState([]); // Creo el estado de listProduct para que quede en memoria
 
-    const hideLoader = () => document.querySelector(".ItemListLoader").classList.add('d-none');
+    const setLoading = props.setLoading;
 
     useEffect(() => {
         // Esto sucede cuando ya se montó el componente
         const list = getItems();
         list.then(response => {
             setListProduct(response)
-            hideLoader();
+            setLoading(false)
         })
 
         console.log('montado');
-    }, []) // el [] es para que renderice una sola vez y no cada vez que actualiza
+    }, [setLoading]) // el [] es para que renderice una sola vez y no cada vez que actualiza
         // Esto sucede cuando el componente se va a montar
         console.log('montando...');
 

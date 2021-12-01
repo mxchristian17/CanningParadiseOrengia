@@ -9,6 +9,8 @@ import {useState} from 'react';
 function App() {
   const [cart, setCart] = useState([]);
 
+  const [Loading, setLoading] = useState(true);
+  
   const onAdd = (item, qty) => {
     setCart((cart) => [
       ...cart,
@@ -26,8 +28,8 @@ function App() {
     <div className="App">
       <Nav badge={badgeCounter()}></Nav>
       <ItemListContainer greeting="Canning Paradise!">
-        <LoadingItemList />
-        <ItemList onAdd={onAdd} />
+        {Loading ? <LoadingItemList /> : <div></div>}
+        <ItemList onAdd={onAdd} setLoading={setLoading} />
       </ItemListContainer>
       <FooterContainer></FooterContainer>
     </div>

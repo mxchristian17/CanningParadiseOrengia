@@ -24,7 +24,7 @@ const ItemList = (props) => {
     return (
         // 
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
-            {listProduct.map(i => <Item key={i.id} item={i} onAdd={props.onAdd} />)}
+            {listProduct.map(i => <Item key={i.id} item={i} onAdd={props.onAdd} setItemDetail={props.setItemDetail} />)}
         </div>
     )
 }

@@ -3,7 +3,7 @@ import React from 'react'
 
 const LoadingItemList = () => {
     return (
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center opacity-50 ItemListLoader">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center opacity-50">
             <div className="col col-md-6 col-lg-3 p-2">
                 <div className="w-100 border bg-light rounded py-3 justify-content-center">
                     <div className="col mx-3 opacity-25 rounded bg-secondary">

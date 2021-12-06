@@ -6,7 +6,7 @@ const Item = (props) => {
         <div className="col col-md-6 col-lg-3 p-2">
             <div className="w-100 border bg-light py-3 rounded justify-content-center">
                 <div className="row">
-                    <h5>{props.item.name}</h5>
+                    <h5 style={{height: "3em"}}>{props.item.name}</h5>
                 </div>
                 <div className="row">
                     <div className="col">
@@ -19,6 +19,9 @@ const Item = (props) => {
                     </div>
                 </div>
                 <ItemCount item={props.item.id} stock={props.item.stock} initial={props.item.initial} onAdd={props.onAdd} />
+                <div className="row my-2">
+                    <div className="col px-4"><button className="btn btn-outline-primary w-100" onClick={() => (props.setItemDetail(props.item.id))}>Detalles</button></div>
+                </div>
             </div>
         </div>
     )

@@ -12,9 +12,13 @@ CanningParadise is an E-commerce created for the final project of the React Js c
   2. From your console run
     ```
     cd {instalation folder}
+
     git clone https://github.com/mxchristian17/CanningParadiseOrengia.git
+
     cd CanningParadiseOrengia
+
     npm install
+    
     npm start
     ```
     

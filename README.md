@@ -10,16 +10,10 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 
   1. First install Node.js on your OS from [https://nodejs.org/es/](https://nodejs.org/es/).
   2. From your console run
-    ```
-    cd {instalation folder}
-
-    git clone https://github.com/mxchristian17/CanningParadiseOrengia.git
-
-    cd CanningParadiseOrengia
-
-    npm install
-    
-    npm start
-    ```
+    `cd {instalation folder}`
+    `git clone https://github.com/mxchristian17/CanningParadiseOrengia.git`
+    `cd CanningParadiseOrengia`
+    `npm install`
+    `npm start`
     
   3. Enjoy!

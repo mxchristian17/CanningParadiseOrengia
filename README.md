@@ -1,4 +1,4 @@
-# ![Canning Paradise](/public/logo192.png =50x50) About CanningParadise
+# ![Canning Paradise](../public/logo192.png | width=50) About CanningParadise
 
 CanningParadise is an E-commerce created for the final project of the React Js course of Coderhouse.
 

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useEffect } from 'react/cjs/react.development';
 
 const ItemCount = (props) => {
     const [qty, setQty] = useState(parseInt(props.initial));
@@ -15,6 +16,13 @@ const ItemCount = (props) => {
         setAvailableStock(availableStock-qty);
         if(qty > availableStock-qty) setQty(availableStock-qty);
     }
+    
+    useEffect(()=>{
+        let inCart = 0;
+        props.cart.filter(i => i.item === props.item).map(i => inCart = inCart+i.qty);
+        setAvailableStock(props.stock-inCart)
+
+    }, [props.cart, props.item, props.stock])
 
     return (
         <div>

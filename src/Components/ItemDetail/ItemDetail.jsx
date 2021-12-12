@@ -2,6 +2,7 @@ import React from 'react'
 import ItemCount from '../ItemCount/ItemCount'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const ItemDetail = (props) => {
     return (
@@ -14,15 +15,15 @@ const ItemDetail = (props) => {
                         <div className="col-md-7">
                             <div className="row">
                                 <div className="col justify-content-center">
-                                    <img src={"Images/Products/" + props.product.img} alt={props.product.img} className="w-100 rounded p-2" />
+                                    <img src={"../Images/Products/" + props.product?.img} alt={props.product?.img} className="w-100 rounded p-2" />
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4 px-4">
                             <div className="row">
                                 <div className="col">
-                                    <div className="text-secondary text-start"><small>{props.product.sold} vendidos</small></div>
-                                    <h3 className="text-start">Detalle de {props.product.name}</h3>
+                                    <div className="text-secondary text-start"><small>{props.product?.sold} vendidos</small></div>
+                                    <h3 className="text-start">Detalle de {props.product?.name}</h3>
                                 </div>
                             </div>
                             <div className="row" style={{height: 1 + "em"}}>
@@ -35,7 +36,7 @@ const ItemDetail = (props) => {
                                             <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
                                             <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
                                         </div>
-                                        <div className="d-flex px-0 position-absolute top-0 start-0 text-primary" style={{maxWidth: 0.99*parseFloat(props.product.rateAverage) + "em", overflow: "hidden"}}>
+                                        <div className="d-flex px-0 position-absolute top-0 start-0 text-primary" style={{maxWidth: 0.99*parseFloat(props.product?.rateAverage) + "em", overflow: "hidden"}}>
                                             <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
                                             <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
                                             <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
@@ -47,26 +48,28 @@ const ItemDetail = (props) => {
                             </div>
                             <div className="row">
                                 <div className="col text-start">
-                                    <small className="text-secondary">{props.product.reviews} opiniones</small>
+                                    <small className="text-secondary">{props.product?.reviews} opiniones</small>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col text-start">
-                                    <span className="text-success h3">${props.product.price.toFixed(2)}</span>
+                                    <span className="text-success h3">${props.product?.price?.toFixed(2)}</span>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col text-start py-2">
-                                    {props.product.description}
+                                    {props.product?.description}
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col">
-                                    <ItemCount item={props.product.id} stock={props.product.stock} initial={props.product.initial} onAdd={props.onAdd} />
+                                    {typeof(props.product?.id) !== 'undefined' && <ItemCount item={props.product?.id} stock={props.product?.stock} initial={props.product?.initial} onAdd={props.onAdd} cart={props.cart} />}
                                 </div>
                             </div>
                             <div className="row my-2">
-                                <div className="col px-4"><button className="btn btn-outline-secondary w-100" onClick={() => (undefined)}>Volver</button></div>
+                                <div className="col px-4">
+                                    <Link to="/" className="btn btn-outline-secondary w-100">Volver</Link>
+                                </div>
                             </div>
                         </div>
                     </div>

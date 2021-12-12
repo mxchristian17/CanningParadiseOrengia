@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
 
 const Item = (props) => {
@@ -10,7 +11,7 @@ const Item = (props) => {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <img src={"Images/Products/" + props.item.img} alt={props.item.img} className="w-50 mb-1 rounded-circle" />
+                        <img src={"../Images/Products/" + props.item.img} alt={props.item.img} className="w-50 mb-1 rounded-circle" />
                     </div>
                 </div>
                 <div className="row">
@@ -18,9 +19,12 @@ const Item = (props) => {
                         <span className="text-success">${props.item.price.toFixed(2)} por unidad</span>
                     </div>
                 </div>
-                <ItemCount item={props.item.id} stock={props.item.stock} initial={props.item.initial} onAdd={props.onAdd} />
+                <ItemCount item={props.item.id} stock={props.item.stock} initial={props.item.initial} onAdd={props.onAdd} cart={props.cart} />
                 <div className="row my-2">
-                    <div className="col px-4"><button className="btn btn-outline-primary w-100" onClick={() => (props.setItemDetail(props.item.id))}>Detalles</button></div>
+                    <div className="col px-4">
+                        <Link to={'/item/'+props.item.id} className="btn btn-outline-primary w-100" >Detalles</Link>
+                        {/*<button className="btn btn-outline-primary w-100" onClick={() => (props.setItemDetail(props.item.id))}>Detalles</button>*/}
+                    </div>
                 </div>
             </div>
         </div>

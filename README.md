@@ -1,4 +1,4 @@
-# ![Canning Paradise](https://github.com/mxchristian17/CanningParadiseOrengia/blob/master/public/logo192.png?raw=true) About CanningParadise
+# ![Canning Paradise](/public/logo192.png=50x50) About CanningParadise
 
 CanningParadise is an E-commerce created for the final project of the React Js course of Coderhouse.
 

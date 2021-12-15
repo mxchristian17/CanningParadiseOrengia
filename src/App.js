@@ -8,6 +8,7 @@ import {useState} from 'react';
 import ItemDetailContainer from './Containers/ItemDetailContainer';
 import LoadingItemDetail from './Components/ItemDetail/LoadingItemDetail';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Cart from './Components/Cart/Cart';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -44,6 +45,10 @@ function App() {
               {Loading && <LoadingItemList />}
               <ItemList onAdd={onAdd} cart={cart} setLoading={setLoading} Loading={Loading} />
             </ItemListContainer>
+          </Route>
+          <Route path="/cart">
+            {Loading && <LoadingItemList />}
+            <Cart cart={cart} setLoading={setLoading} Loading={Loading} />
           </Route>
           <Route path={"/"}>
             <ItemListContainer greeting="Canning Paradise!">

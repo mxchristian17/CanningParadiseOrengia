@@ -1,14 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const CartWidget = (props) => {
     return (
         <div>
-            <button type="button" className="btn mx-3">
+            <Link to="/cart" className="btn mx-3">
                 <img style={{width: 20}} src="../Images/shopping-cart.png" alt="CartWidgetIcon" />
                 <span className="badge bg-danger mx-1">{props.badge}</span>
-            </button>
+            </Link>
         </div>
     )
 }
 
 export default CartWidget
+

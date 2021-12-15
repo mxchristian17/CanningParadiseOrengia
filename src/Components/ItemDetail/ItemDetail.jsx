@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ItemCount from '../ItemCount/ItemCount'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react/cjs/react.development';
 
 const ItemDetail = (props) => {
+    const [shopped, setShopped] = useState(0);
+    useEffect(() => {
+        let inCart = 0;
+        props.cart.filter(i => i.item === props.product.id).map(i => inCart = inCart+i.qty);
+        setShopped(inCart);
+    }, [setShopped, props.cart, props.product.id]);
     return (
         <div className="row row-cols-1 row-cols-md-1 row-cols-lg-2 justify-content-center">
             <div className="col col-md col-lg-9 p-2">
@@ -61,11 +68,24 @@ const ItemDetail = (props) => {
                                     {props.product?.description}
                                 </div>
                             </div>
+                            {shopped === 0 ?
                             <div className="row">
                                 <div className="col">
                                     {typeof(props.product?.id) !== 'undefined' && <ItemCount item={props.product?.id} stock={props.product?.stock} initial={props.product?.initial} onAdd={props.onAdd} cart={props.cart} />}
                                 </div>
                             </div>
+                            :
+                            <div>
+                                <div className="row">
+                                    <div className="text-secondary"><small >{shopped} en el carro de {props.product?.stock} disponibles</small></div>
+                                </div>
+                                <div className="row my-2">
+                                    <div className="col px-4">
+                                        <Link to="/cart" className="btn btn-outline-secondary w-100">Finalizar compra</Link>
+                                    </div>
+                                </div>
+                            </div>
+                            }
                             <div className="row my-2">
                                 <div className="col px-4">
                                     <Link to="/" className="btn btn-outline-secondary w-100">Volver</Link>

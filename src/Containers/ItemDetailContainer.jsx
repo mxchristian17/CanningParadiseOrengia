@@ -2,13 +2,13 @@ import React from 'react'
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react/cjs/react.development'
 import ItemDetail from '../Components/ItemDetail/ItemDetail';
+import LoadingItemDetail from '../Components/ItemDetail/LoadingItemDetail';
 import getItems from '../Global/getItems'
 
 const ItemDetailContainer = (props) => {
     const [product, setProduct] = useState([]);
 
-    const setLoadingItemDetails = props.setLoadingItemDetails;
-    const LoadingItemDetails = props.LoadingItemDetails;
+    const [Loading, setLoading] = useState(true);
     const { itemId } = useParams();
 
     useEffect(() => {
@@ -16,18 +16,17 @@ const ItemDetailContainer = (props) => {
         const list = getItems();
         list.then(response => {
             response.map(i => {if(parseInt(i.id) === parseInt(itemId)){setProduct(i);}return i.id})
-            setLoadingItemDetails(false)
+            setLoading(false)
         })
 
         return (
-            setLoadingItemDetails(true)
+            setLoading(true)
         )
-    }, [itemId, setLoadingItemDetails])
+    }, [itemId, setLoading])
 
     return (
         <div className="container">
-            {!LoadingItemDetails && <ItemDetail product={product} onAdd={props.onAdd} cart={props.cart} />}
-            {props.children}
+            {Loading ? <LoadingItemDetail /> : <ItemDetail product={product} />}
         </div>
     )
 }

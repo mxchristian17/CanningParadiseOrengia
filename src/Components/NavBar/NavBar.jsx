@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
+import { CartContext } from '../../App';
 
 const Nav = (props) => {
+    const { cart } = useContext(CartContext);
+    const badgeCounter = () => { return cart.map(n => n.qty).reduce((a, b) => a + b, 0);}
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -49,7 +52,7 @@ const Nav = (props) => {
                         </li>
                     </ul>
                     <div className="d-flex">
-                        <CartWidget badge={props.badge}></CartWidget>
+                        <CartWidget badge={badgeCounter()}></CartWidget>
                     </div>
                 </div>
             </div>

@@ -3,12 +3,12 @@ import { useParams } from 'react-router'
 import { useEffect } from 'react/cjs/react.development'
 import getItems from '../../Global/getItems'
 import Item from '../Item/Item'
+import LoadingItemList from '../../Components/ItemList/LoadingItemList'
 
 const ItemList = (props) => {
+    
     const [listProduct, setListProduct] = useState([]); // Creo el estado de listProduct para que quede en memoria
-
-    const setLoading = props.setLoading;
-    const Loading = props.Loading;
+    const [Loading, setLoading] = useState(true);
 
     const { categoryId } = useParams();
 
@@ -37,9 +37,9 @@ const ItemList = (props) => {
         //console.log('montando...');
 
     return (
-        // 
+        Loading ? <LoadingItemList /> :
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
-            {!Loading && listProduct.map(i => <Item key={i.id} item={i} onAdd={props.onAdd} cart={props.cart} />)}
+            {listProduct.map(i => <Item key={i.id} item={i} />)}
         </div>
     )
 }

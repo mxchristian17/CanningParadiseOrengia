@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
+import { CartContext } from '../../App';
 
 const Item = (props) => {
+    const { cart } = useContext(CartContext);
     const [shopped, setShopped] = useState(0);
     useEffect(() => {
         let inCart = 0;
-        props.cart.filter(i => i.item === props.item.id).map(i => inCart = inCart+i.qty);
+        cart.filter(i => i.item === props.item.id).map(i => inCart = inCart+i.qty);
         setShopped(inCart);
-    }, [setShopped, props.cart, props.item.id]);
+    }, [setShopped, cart, props.item.id]);
     return (
         <div className="col col-md-6 col-lg-3 p-2">
             <div className="w-100 border bg-light py-3 rounded justify-content-center">
@@ -28,7 +30,7 @@ const Item = (props) => {
                 {shopped === 0 ?
                 <div className="row">
                     <div className="col">
-                        {typeof(props.item?.id) !== 'undefined' && <ItemCount item={props.item?.id} stock={props.item?.stock} initial={props.item?.initial} onAdd={props.onAdd} cart={props.cart} />}
+                        {typeof(props.item?.id) !== 'undefined' && <ItemCount item={props.item?.id} stock={props.item?.stock} initial={props.item?.initial} onAdd={props.onAdd} cart={cart} />}
                     </div>
                 </div>
                 :
@@ -43,7 +45,7 @@ const Item = (props) => {
                     </div>
                 </div>
                 }
-                {/*<ItemCount item={props.item.id} stock={props.item.stock} initial={props.item.initial} onAdd={props.onAdd} cart={props.cart} />*/}
+                {/*<ItemCount item={props.item.id} stock={props.item.stock} initial={props.item.initial} onAdd={props.onAdd} cart={cart} />*/}
                 <div className="row my-2">
                     <div className="col px-4">
                         <Link to={'/item/'+props.item.id} className="btn btn-outline-primary w-100" >Detalles</Link>

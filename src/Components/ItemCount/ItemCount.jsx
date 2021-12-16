@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react';
 import { useEffect } from 'react/cjs/react.development';
+import { CartContext } from '../../App';
 
 const ItemCount = (props) => {
+    const { cart } = useContext(CartContext);
+    const { onAdd } = useContext(CartContext);
     const [qty, setQty] = useState(parseInt(props.initial));
     const [availableStock, setAvailableStock] = useState(props.stock);
 
@@ -12,17 +15,17 @@ const ItemCount = (props) => {
         if(qty > 0) setQty(qty-1);
     }
     const addToCart = () => {
-        props.onAdd(props.item, qty);
+        onAdd(props.item, qty);
         setAvailableStock(availableStock-qty);
         if(qty > availableStock-qty) setQty(availableStock-qty);
     }
     
     useEffect(()=>{
         let inCart = 0;
-        props.cart.filter(i => i.item === props.item).map(i => inCart = inCart+i.qty);
+        cart.filter(i => i.item === props.item).map(i => inCart = inCart+i.qty);
         setAvailableStock(props.stock-inCart)
 
-    }, [props.cart, props.item, props.stock])
+    }, [cart, props.item, props.stock])
 
     return (
         <div>

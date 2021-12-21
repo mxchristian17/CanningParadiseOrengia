@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import React, {useState} from 'react';
+import React from 'react';
 
 
 import Nav from './Components/NavBar/NavBar.jsx';
@@ -9,19 +9,16 @@ import ItemDetailContainer from './Containers/ItemDetailContainer';
 import ItemListContainer from './Containers/ItemListContainer';
 import ItemList from './Components/ItemList/ItemList';
 import Cart from './Components/Cart/Cart';
+import { CartContextProvider } from './Context/CartContext';
 
-export const CartContext = React.createContext('');
-
+//export const CartContext = React.createContext('');
 
 function App() {
-
-  const [cart, setCart] = useState([]);
-  const onAdd = (item, qty) => {setCart((cart) => [...cart,{item: item,qty: qty},])};
 
   return (
     <BrowserRouter>
       <div className="App">
-        <CartContext.Provider value={{cart : cart, setCart : setCart, onAdd : onAdd}}>
+        <CartContextProvider>
           <Nav></Nav>
           <Switch>
             <Route path='/item/:itemId'><ItemDetailContainer /></Route>
@@ -29,7 +26,7 @@ function App() {
             <Route path="/cart"><Cart /></Route>
             <Route path={"/"}><ItemListContainer greeting="CanningParadise"><ItemList /></ItemListContainer></Route>
           </Switch>
-        </CartContext.Provider>
+        </CartContextProvider>
         <FooterContainer></FooterContainer>
       </div>
     </BrowserRouter>

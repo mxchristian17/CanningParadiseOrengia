@@ -3,10 +3,10 @@ import CartItem from '../CartItem/CartItem'
 import { useEffect } from 'react/cjs/react.development'
 import getItems from '../../Global/getItems'
 import LoadingItemList from '../ItemList/LoadingItemList'
-import { CartContext } from '../../App'
+import CartContext from '../../Context/CartContext'
 
-const Cart = (props) => {
-    const { cart } = useContext(CartContext);
+const Cart = () => {
+    const { cart, onRemove, onAdd } = useContext(CartContext);
     const [listProduct, setListProduct] = useState([]); // Creo el estado de listProduct para que quede en memoria
     const [Loading, setLoading] = useState(true);
 
@@ -37,7 +37,11 @@ const Cart = (props) => {
     return (
         Loading ? <LoadingItemList /> :
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
-            {listProduct.map(i => <CartItem key={i.id} item={i} qty={i.qty} onAdd={props.onAdd} cart={cart} />)}
+            {listProduct.length > 0 ?
+            listProduct.map(i => <CartItem key={i.id} item={i} qty={i.qty} onRemove={onRemove} onAdd={onAdd} cart={cart} />)
+            :
+            <p className="my-4">Nada en la carta por el momento</p>
+        }
         </div>
     )
 }

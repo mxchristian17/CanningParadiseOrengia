@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react/cjs/react.development';
-import { CartContext } from '../../App';
+import CartContext from '../../Context/CartContext';
 
 const ItemDetail = (props) => {
     const { cart } = useContext(CartContext);

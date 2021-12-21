@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { Link } from 'react-router-dom'
-import ItemCount from '../ItemCount/ItemCount'
-import { CartContext } from '../../App';
+import CartContext from '../../Context/CartContext';
 
 const Item = (props) => {
     const { cart } = useContext(CartContext);
@@ -27,23 +26,14 @@ const Item = (props) => {
                         <span className="text-success">${props.item.price.toFixed(2)} por unidad</span>
                     </div>
                 </div>
-                {shopped === 0 ?
-                <div className="row">
-                    <div className="col">
-                        {typeof(props.item?.id) !== 'undefined' && <ItemCount item={props.item?.id} stock={props.item?.stock} initial={props.item?.initial} onAdd={props.onAdd} cart={cart} />}
-                    </div>
-                </div>
-                :
+                {shopped !== 0 ?
                 <div>
                     <div className="row">
                         <div className="text-secondary"><small >{shopped} en el carro de {props.item?.stock} disponibles</small></div>
                     </div>
-                    <div className="row my-2">
-                        <div className="col px-4">
-                            <Link to="/cart" className="btn btn-outline-secondary w-100">Finalizar compra</Link>
-                        </div>
-                    </div>
                 </div>
+                :
+                <div style={{height: "1.5em"}}></div>
                 }
                 {/*<ItemCount item={props.item.id} stock={props.item.stock} initial={props.item.initial} onAdd={props.onAdd} cart={cart} />*/}
                 <div className="row my-2">

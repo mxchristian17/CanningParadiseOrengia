@@ -7,21 +7,20 @@ const CartContext = React.createContext()
 export const CartContextProvider = ({children}) => {
     const [cart, setCart] = useState([]);
     const onAdd = (item, qty) => {
-        //let oldQty = cart.filter(function(el) { return el.item === item.id; });
-        let oldQty = 0;
-        cart.forEach((el)=> {if(el.item === item) oldQty=oldQty+el.qty;})
-        let filtered = cart.filter(function(el) { return el.item !== item; });
-        filtered.push({item : item, qty : (oldQty+qty)})
-        setCart(filtered)
+        //console.log(cart)
+        let tempCart = cart;
+        let found = false;
+        tempCart.forEach((el)=> {if(el.item === item) {el.qty=el.qty+qty;found=true;}})
+        if(!found)tempCart.push({item : item, qty : (qty)})
+        setCart(tempCart)
     };
     const onRemove = (item) => {
         let filtered = cart.filter(function(el) { return el.item !== item.id; });
         setCart(filtered)
     }
-
-
+    const badgeCounter = () => { return cart.map(n => n.qty).reduce((a, b) => a + b, 0);}
     return (
-        <CartContext.Provider value={{cart : cart, setCart : setCart, onAdd : onAdd, onRemove : onRemove}}>
+        <CartContext.Provider value={{cart : cart, badgeCounter, setCart, onAdd, onRemove}}>
             {children}
         </CartContext.Provider>
     )

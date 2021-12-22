@@ -1,9 +1,11 @@
 import React, {useState, useContext} from 'react'
 import CartItem from '../CartItem/CartItem'
 import { useEffect } from 'react/cjs/react.development'
-import getItems from '../../Global/getItems'
+//import getItems from '../../Global/getItems'
 import LoadingItemList from '../ItemList/LoadingItemList'
 import CartContext from '../../Context/CartContext'
+import { getDoc, doc } from 'firebase/firestore'
+import { db } from '../../Services/Firebase/Firebase'
 
 const Cart = () => {
     const { cart, onRemove, onAdd } = useContext(CartContext);
@@ -12,6 +14,20 @@ const Cart = () => {
 
     useEffect(() => {
         // Esto sucede cuando ya se montó el componente
+        setLoading(true)
+        let Products = [];
+        cart.forEach((el, idx, array)=> {
+            getDoc(doc(db, 'items', el.item)).then((QuerySnapshot) => {
+                const product = {id: QuerySnapshot.id, cartQty: el.qty, ...QuerySnapshot.data()}
+                Products.push(product)
+            }).catch((error) => {
+                console.log('Error buscando el item', error)
+            }).finally(() => {
+                if (idx === array.length - 1){setListProduct(Products);setLoading(false);}
+            })
+        })
+        cart.length === 0 && setLoading(false);
+        /*
         const list = getItems();
         let Products = [];
         list.then(response => {
@@ -24,13 +40,11 @@ const Cart = () => {
                 }
                 return i.id
             })
+
             setListProduct(Products)
             setLoading(false)
-        })
+        })*/
 
-        return (
-            setLoading(true)
-        )
     }, [setLoading, cart]) // el [] es para que renderice una sola vez y no cada vez que actualiza
         // Esto sucede cuando el componente se va a montar
         //console.log('montando...');

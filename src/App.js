@@ -11,10 +11,8 @@ import ItemList from './Components/ItemList/ItemList';
 import Cart from './Components/Cart/Cart';
 import { CartContextProvider } from './Context/CartContext';
 
-//export const CartContext = React.createContext('');
 
 function App() {
-
   return (
     <BrowserRouter>
       <div className="App">

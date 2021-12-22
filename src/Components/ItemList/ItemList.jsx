@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router'
 import { useEffect } from 'react/cjs/react.development'
-import getItems from '../../Global/getItems'
+//import getItems from '../../Global/getItems'
 import Item from '../Item/Item'
 import LoadingItemList from '../../Components/ItemList/LoadingItemList'
+import { db } from '../../Services/Firebase/Firebase'
+import { collection, getDocs, query, where, limit } from 'firebase/firestore'
 
 const ItemList = (props) => {
     
@@ -14,9 +16,38 @@ const ItemList = (props) => {
 
     useEffect(() => {
         // Esto sucede cuando ya se montó el componente
-        const list = getItems();
-        let Products = [];
-        list.then(response => {
+        //const list = getItems();
+        //let Products = [];
+        if(categoryId === undefined){
+            setLoading(true);
+            getDocs(collection(db, 'items')).then((QuerySnapshot) => {
+                //console.log(QuerySnapshot)
+                const products = QuerySnapshot.docs.map(doc => {
+                    //console.log(doc)
+                    return {id : doc.id, ...doc.data()}
+                })
+                setListProduct(products)
+            }).catch((error) => {
+                console.log('Error al buscar los objetos', error)
+            }).finally(() => {
+                setLoading(false);
+            })
+        }else{
+            setLoading(true)
+            getDocs(query(collection(db, 'items'), where('categoryId', '==', categoryId), limit(2))).then((QuerySnapshot) => {
+                //console.log(QuerySnapshot)
+                const products = QuerySnapshot.docs.map(doc => {
+                    //console.log(doc)
+                    return {id : doc.id, ...doc.data()}
+                })
+                setListProduct(products)
+            }).catch((error) => {
+                console.log('Error al buscar los objetos', error)
+            }).finally(() => {
+                setLoading(false);
+            })
+        }
+        /*list.then(response => {
             response.map(i => {
                 if((i.categoryId === categoryId) || (typeof(categoryId) === 'undefined')){
                     Products = [...Products, i];
@@ -25,7 +56,7 @@ const ItemList = (props) => {
             })
             setListProduct(Products)
             setLoading(false)
-        })
+        })*/
         
         //console.log('montado');
 

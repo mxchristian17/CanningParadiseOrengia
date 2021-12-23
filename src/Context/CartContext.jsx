@@ -6,21 +6,31 @@ const CartContext = React.createContext()
 
 export const CartContextProvider = ({children}) => {
     const [cart, setCart] = useState([]);
-    const onAdd = (item, qty) => {
-        //console.log(cart)
-        let tempCart = cart;
-        let found = false;
-        tempCart.forEach((el)=> {if(el.item === item) {el.qty=el.qty+qty;found=true;}})
-        if(!found)tempCart.push({item : item, qty : (qty)})
+    
+    const onModify = (item, qty, stock, price, name, addOrSubtract = 1) => {
+        let tempCart = [...cart];
+        const itemFound = Object.keys(tempCart).find(key => tempCart[key].item === item);
+        if (itemFound == null) {
+            if(qty > stock) qty = stock
+            tempCart.push({item : item, qty : qty, price : price, name : name})
+        } else {
+            let newVal = tempCart[itemFound].qty+(qty*addOrSubtract)
+            if(newVal > stock) newVal = stock;
+            if(newVal > 0) { tempCart[itemFound].qty = newVal; }else{tempCart.splice(itemFound, 1)}
+        }
         setCart(tempCart)
     };
-    const onRemove = (item) => {
-        let filtered = cart.filter(function(el) { return el.item !== item.id; });
-        setCart(filtered)
-    }
-    const badgeCounter = () => { return cart.map(n => n.qty).reduce((a, b) => a + b, 0);}
+
+    const badgeCounter = () => { return cart.reduce((a, b) => a + b.qty, 0);}
+
+    const cartTotal = () => {
+        let total = 0;
+        cart.forEach((el) => { total = total + el.price * el.qty })
+        return (Math.round(total * 100)/100);
+    };
+
     return (
-        <CartContext.Provider value={{cart : cart, badgeCounter, setCart, onAdd, onRemove}}>
+        <CartContext.Provider value={{cart : cart, badgeCounter, setCart, onModify, cartTotal}}>
             {children}
         </CartContext.Provider>
     )

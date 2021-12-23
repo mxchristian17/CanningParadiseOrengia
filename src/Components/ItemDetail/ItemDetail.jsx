@@ -12,7 +12,9 @@ const ItemDetail = (props) => {
     const { product } = props;
     useEffect(() => {
         let inCart = 0;
-        cart.filter(i => i.item === product.id).map(i => inCart = inCart+i.qty);
+        try{
+        inCart = cart.find(i => i.item === product.id).qty;
+        } catch (error) {}
         setShopped(inCart);
     }, [setShopped, cart, product.id]);
     return (
@@ -74,7 +76,7 @@ const ItemDetail = (props) => {
                             {shopped === 0 & typeof(product?.id) !== 'undefined' ?
                                 <div className="row">
                                     <div className="col">
-                                        <ItemCount item={product?.id} stock={product?.stock} initial={product?.initial} />
+                                        <ItemCount item={product?.id} stock={product?.stock} initial={product?.initial} price={product?.price} name={product?.name} />
                                     </div>
                                 </div>
                             :

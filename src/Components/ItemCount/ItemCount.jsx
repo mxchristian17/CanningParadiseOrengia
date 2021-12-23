@@ -4,7 +4,7 @@ import CartContext from '../../Context/CartContext';
 
 const ItemCount = (props) => {
     const { cart } = useContext(CartContext);
-    const { onAdd } = useContext(CartContext);
+    const { onModify } = useContext(CartContext);
     const [qty, setQty] = useState(parseInt(props.initial));
     const [availableStock, setAvailableStock] = useState(props.stock);
 
@@ -15,7 +15,7 @@ const ItemCount = (props) => {
         if(qty > 0) setQty(qty-1);
     }
     const addToCart = () => {
-        onAdd(props.item, qty);
+        onModify(props.item, qty, props.stock, props.price, props.name, 1);
         setAvailableStock(availableStock-qty);
         if(qty > availableStock-qty) setQty(availableStock-qty);
     }

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
+import CartContext from '../../Context/CartContext'
 
-const Nav = () => {    
+const Nav = () => {
+    const { cart } = useContext(CartContext);
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -48,9 +50,7 @@ const Nav = () => {
                             <Link to="/category/latas" className="nav-link">Latas</Link>
                         </li>
                     </ul>
-                    <div className="d-flex">
-                        <CartWidget />
-                    </div>
+                    {cart.length > 0 && <div className="d-flex"><CartWidget /></div>}
                 </div>
             </div>
         </nav>

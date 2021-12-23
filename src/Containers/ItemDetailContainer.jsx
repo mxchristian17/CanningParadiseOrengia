@@ -15,11 +15,6 @@ const ItemDetailContainer = (props) => {
 
     useEffect(() => {
         // Esto sucede cuando ya se montó el componente
-        /*const list = getItems();
-        list.then(response => {
-            response.map(i => {if(parseInt(i.id) === parseInt(itemId)){setProduct(i);}return i.id})
-            setLoading(false)
-        })*/
         setLoading(true)
         getDoc(doc(db, 'items', itemId)).then((QuerySnapshot) => {
             const product = {id: QuerySnapshot.id, ...QuerySnapshot.data()}

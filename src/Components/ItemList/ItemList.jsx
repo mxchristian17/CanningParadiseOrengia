@@ -16,8 +16,6 @@ const ItemList = (props) => {
 
     useEffect(() => {
         // Esto sucede cuando ya se montó el componente
-        //const list = getItems();
-        //let Products = [];
         if(categoryId === undefined){
             setLoading(true);
             getDocs(collection(db, 'items')).then((QuerySnapshot) => {
@@ -47,18 +45,6 @@ const ItemList = (props) => {
                 setLoading(false);
             })
         }
-        /*list.then(response => {
-            response.map(i => {
-                if((i.categoryId === categoryId) || (typeof(categoryId) === 'undefined')){
-                    Products = [...Products, i];
-                }
-                return i.id
-            })
-            setListProduct(Products)
-            setLoading(false)
-        })*/
-        
-        //console.log('montado');
 
         return (
             setLoading(true)

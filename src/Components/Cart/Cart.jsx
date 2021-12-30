@@ -3,14 +3,63 @@ import CartItem from '../CartItem/CartItem'
 import { useEffect } from 'react/cjs/react.development'
 import LoadingItemList from '../ItemList/LoadingItemList'
 import CartContext from '../../Context/CartContext'
-import { getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc, addDoc, collection, Timestamp, writeBatch } from 'firebase/firestore'
 import { db } from '../../Services/Firebase/Firebase'
 import { Link } from 'react-router-dom';
+import OrderForm from './OrderForm'
 
 const Cart = () => {
-    const { cart, onRemove, onModify, cartTotal } = useContext(CartContext);
+    const { cart, onRemove, onModify, cartTotal, clearCart } = useContext(CartContext);
     const [listProduct, setListProduct] = useState([]); // Creo el estado de listProduct para que quede en memoria
     const [Loading, setLoading] = useState(true);
+    const [showForm, setShowForm] = useState(false);
+    const [contact,  setContact] = useState({
+        name:'',
+        phone:'',
+        email:''
+    })
+    const [processingOrder, setProcessingOrder] = useState(false)
+    const [idLastOrder, setIdLastOrder] = useState(false)
+    const confirmOrder = () => {
+        setProcessingOrder(true)
+
+        const objOrder = {
+            items: cart,
+            total: cartTotal(),
+            name: contact.email,
+            phone: contact.phone,
+            email: contact.email,
+            date: Timestamp.fromDate(new Date())
+        }
+
+        const batch = writeBatch(db)
+        const outOfStock = []
+
+        objOrder.items.forEach((prod, idx, array) => {
+            getDoc(doc(db, 'items', prod.item)).then((DocumentSnapshot) => {
+                if(DocumentSnapshot.data().stock >= prod.qty){
+                    batch.update(doc(db, 'items', DocumentSnapshot.id), {
+                        stock: DocumentSnapshot.data().stock - prod.qty
+                    })
+                } else {
+                    outOfStock.push( {id: DocumentSnapshot.id, ...DocumentSnapshot.data() })
+                }
+            })
+        })
+
+        if(outOfStock.length === 0 ) {
+            addDoc(collection(db, 'orders'), objOrder).then(({ id }) => {
+                batch.commit().then(() => {
+                    setIdLastOrder(id)
+                    clearCart()
+                    setProcessingOrder(false)
+                })
+            })
+        } else {
+            setIdLastOrder('El stock ya no está disponible. Por favor vuelva a ejecutar su compra')
+        }
+
+    }
 
     useEffect(() => {
         // Esto sucede cuando ya se montó el componente
@@ -35,15 +84,24 @@ const Cart = () => {
     return (
         Loading ? <LoadingItemList /> :
         <div>
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center py-2">
             {listProduct.length > 0 ?
                 listProduct.map(i =><CartItem key={i.id} item={i} qty={i.qty} onRemove={onRemove} onModify={onModify} cart={cart} />)
                 :
-                <p className="my-4">Nada en la carta por el momento</p>
+                <div className="my-4">Nada en la carta por el momento {idLastOrder !== false && <div><b>Id de su última órden: </b> {idLastOrder}</div>}</div>
             }
             </div>
             {listProduct.length > 0 ?
-                <p className="h6 text-success">Total: ${cartTotal()}</p>
+                <div>
+                    <p className="h6 text-success">Total: ${cartTotal()}</p>
+                    {showForm && <OrderForm contact={ contact } setContact = { setContact } />}
+                    <div className="btn-group pb-4" role="group" aria-label="Order buttons">
+                        {showForm ? <div className="btn btn-outline-primary" onClick={() => { confirmOrder() }}>Confirmar compra</div>
+                        :
+                        <div className="btn btn-outline-primary" onClick={() => { setShowForm(true) }}>Agregar contacto</div>}
+                        <div className="btn btn-outline-danger" onClick={() => { clearCart() }}>Cancelar compra</div>
+                    </div>
+                </div>
                 :
                 <div className="row row-cols-3 justify-content-center my-1">
                     <div className="col px-4">
@@ -51,6 +109,7 @@ const Cart = () => {
                     </div>
                 </div>
             }
+            {processingOrder && <div className="position-fixed bottom-0 start-0 p-2 m-2 rounded bg-dark text-light">Enviando orden...</div>}
         </div>
     )
 }

@@ -29,8 +29,10 @@ export const CartContextProvider = ({children}) => {
         return (Math.round(total * 100)/100);
     };
 
+    const clearCart = () => { setCart([]); return; }
+
     return (
-        <CartContext.Provider value={{cart : cart, badgeCounter, setCart, onModify, cartTotal}}>
+        <CartContext.Provider value={{cart : cart, badgeCounter, setCart, onModify, cartTotal, clearCart}}>
             {children}
         </CartContext.Provider>
     )

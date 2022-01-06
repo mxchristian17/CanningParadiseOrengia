@@ -9,33 +9,28 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 ## Running the project
 
 1. First install Node.js on your OS from [https://nodejs.org/es/](https://nodejs.org/es/).
-2. From your console run
+2. From your console run:
 
-`cd {installation folder}`
+> `cd {installation folder}`
+> Position into the installation folder
 
-Position into the installation folder
+> `git clone https://github.com/mxchristian17/CanningParadiseOrengia.git`
+> Clone the project repository
 
-`git clone https://github.com/mxchristian17/CanningParadiseOrengia.git`
+> `cd CanningParadiseOrengia`
+> Position into the project folder
 
-Clone the project repository
+> `npm install`
+> Install required dependencies
 
-`cd CanningParadiseOrengia`
-
-Position into the project folder
-
-`npm install`
-
-Install required dependencies
-
-`npm start`
-
-Run the server with the project
+> `npm start`
+> Run the server with the project
     
 3. Enjoy!
 
 ## Products database
 
-+ This project was designed to be executed using Firebase. In the database you need to have two collections: items and orders.
+This project was designed to be executed using [https://firebase.google.com/](Firebase). In the database you need to have two collections: items and orders.
   + items:
     + categoryId
     + description

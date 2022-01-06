@@ -10,8 +10,8 @@ import OrderForm from './OrderForm'
 
 const Cart = () => {
     const { cart, onRemove, onModify, cartTotal, clearCart } = useContext(CartContext);
-    const [listProduct, setListProduct] = useState([]); // Creo el estado de listProduct para que quede en memoria
-    const [Loading, setLoading] = useState(true);
+    const [listProduct, setListProduct] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [contact,  setContact] = useState({
         name:'',
@@ -62,7 +62,6 @@ const Cart = () => {
     }
 
     useEffect(() => {
-        // Esto sucede cuando ya se montó el componente
         setLoading(true)
         setListProduct([])
         let Products = [];
@@ -78,11 +77,9 @@ const Cart = () => {
         })
         cart.length === 0 && setLoading(false);
 
-    }, [setLoading, cart]) // el [] es para que renderice una sola vez y no cada vez que actualiza
-        // Esto sucede cuando el componente se va a montar
-        //console.log('montando...');
+    }, [setLoading, cart])
     return (
-        Loading ? <LoadingItemList /> :
+        loading ? <LoadingItemList /> :
         <div>
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center py-2">
             {listProduct.length > 0 ?

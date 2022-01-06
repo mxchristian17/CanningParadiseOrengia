@@ -3,18 +3,16 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react/cjs/react.development'
 import ItemDetail from '../Components/ItemDetail/ItemDetail';
 import LoadingItemDetail from '../Components/ItemDetail/LoadingItemDetail';
-//import getItems from '../Global/getItems'
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from '../Services/Firebase/Firebase'
 
 const ItemDetailContainer = (props) => {
     const [product, setProduct] = useState([]);
 
-    const [Loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const { itemId } = useParams();
 
     useEffect(() => {
-        // Esto sucede cuando ya se montó el componente
         setLoading(true)
         getDoc(doc(db, 'items', itemId)).then((QuerySnapshot) => {
             const product = {id: QuerySnapshot.id, ...QuerySnapshot.data()}
@@ -32,7 +30,7 @@ const ItemDetailContainer = (props) => {
 
     return (
         <div className="container">
-            {Loading ? <LoadingItemDetail /> : <ItemDetail product={product} />}
+            {loading ? <LoadingItemDetail /> : <ItemDetail product={product} />}
         </div>
     )
 }

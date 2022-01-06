@@ -32,3 +32,29 @@ Install required dependencies
 Run the server with the project
     
 3. Enjoy!
+
+## Products database
+
++ This project was designed to be executed using Firebase. In the database you need to have two collections: items and orders.
+  + items:
+    + categoryId
+    + description
+    + img
+    + initial
+    + name
+    + price
+    + rateAverage
+    + reviews
+    + sold
+    + stock
+  + orders:
+    + date
+    + email
+    + items
+      + item
+      + name
+      + price
+      + qty
+    + name
+    + phone
+    + total

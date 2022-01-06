@@ -35,11 +35,9 @@ const Item = (props) => {
                 :
                 <div style={{height: "1.5em"}}></div>
                 }
-                {/*<ItemCount item={props.item.id} stock={props.item.stock} initial={props.item.initial} onAdd={props.onAdd} cart={cart} />*/}
                 <div className="row my-2">
                     <div className="col px-4">
                         <Link to={'/item/'+props.item.id} className="btn btn-outline-primary w-100" >Detalles</Link>
-                        {/*<button className="btn btn-outline-primary w-100" onClick={() => (props.setItemDetail(props.item.id))}>Detalles</button>*/}
                     </div>
                 </div>
             </div>

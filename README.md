@@ -30,7 +30,7 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 
 ## Products database
 
-This project was designed to be executed using [https://firebase.google.com/](Firebase). In the database you need to have two collections: items and orders.
+This project was designed to be executed using [Firebase](https://firebase.google.com/). In the database you need to have two collections: items and orders.
   + items:
     + categoryId
     + description

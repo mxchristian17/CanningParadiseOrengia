@@ -27,6 +27,13 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 ## Products database
 
 This project was designed to be executed using [Firebase](https://firebase.google.com/) with a Firestore Database.  
+You will need to create your project from your console following this steps:
+1. Press **Add project**
+2. Enter the project name
+3. If you want you can enable Google Analytics for the project, but is not necesary. If you enable it, you will need a Google Analytics account
+4. Press create project
+
+
 In the database you need to have two collections: **items** and **orders**.
   - **items** *Collection*
     - **categoryId** *String*  
@@ -70,3 +77,7 @@ In the database you need to have two collections: **items** and **orders**.
     The user contact phone number
     - **total** *Number*  
     Total order price
+
+## Uploading products
+
+The project doesn´t have a control panel yet that allows to upload products from there, so you will need to do that task directly from [Firebase](https://console.firebase.google.com/).

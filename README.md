@@ -32,23 +32,39 @@ This project was designed to be executed using [Firebase](https://firebase.googl
     - **description** *String*  
     Description of the product
     - **img** *String*  
-    Name of the image file with extension
+    Name of the image file with extension and no path
     - **initial** *Number*  
-    Amount of products to buy set as default
-    - name
-    - price
-    - rateAverage
-    - reviews
-    - sold
-    - stock
-  - orders:
-    - date
-    - email
-    - items
-      - item
-      - name
-      - price
-      - qty
-    - name
-    - phone
-    - total
+    Amount of products to buy set as default. If this value is bigger than stocks value, it will be consider equal
+    - **name** *String*  
+    Name of the product
+    - **price** *Number*  
+    Selling price of the product with tax included
+    - **rateAverage** *Number*  
+    Average of ratings of the product from one to five stars. It can be a float number
+    - **reviews** *Number*  
+    Number of product reviews
+    - **sold** *Number*  
+    Historic sold quantity of the product
+    - **stock** *Number*  
+    Available stock qty of the product
+  - **orders** *Collection*
+    - **date** *Timestamp*  
+    
+    - **email** *String*  
+    
+    - **items** *Matrix*  
+    
+      - **item** *String*  
+      Item Firebase Id
+      - **name** *String*  
+      Item Name
+      - **price** *Number*  
+      Item Price
+      - **qty** *Number*  
+      Item sold quantity
+    - **name** **  
+    
+    - **phone** **  
+    
+    - **total** **  
+    

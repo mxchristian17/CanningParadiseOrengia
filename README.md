@@ -9,7 +9,8 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 ## Running the project
 
 1. First install Node.js on your OS from [https://nodejs.org/es/](https://nodejs.org/es/).
-2. From your console run:
+2. We recommend you to use Visual Studio Code and its terminal for this project from [Visual Studio Code](https://code.visualstudio.com/download) (This is optional).
+3. From your console run:
 
 > `cd {installation folder}` Position into the installation folder
 >
@@ -21,11 +22,12 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 >
 > `npm start` Run the server with the project
     
-3. Enjoy!
+4. Enjoy!
 
 ## Products database
 
-This project was designed to be executed using [Firebase](https://firebase.google.com/). In the database you need to have two collections: **items** and **orders**.
+This project was designed to be executed using [Firebase](https://firebase.google.com/) with a Firestore Database.  
+In the database you need to have two collections: **items** and **orders**.
   - **items** *Collection*
     - **categoryId** *String*  
     Text identifier of the category of the product
@@ -49,11 +51,11 @@ This project was designed to be executed using [Firebase](https://firebase.googl
     Available stock qty of the product
   - **orders** *Collection*
     - **date** *Timestamp*  
-    
+    The date and time of the order generation
     - **email** *String*  
-    
+    The user contact email address
     - **items** *Matrix*  
-    
+    An object with the products of the order and its details
       - **item** *String*  
       Item Firebase Id
       - **name** *String*  
@@ -62,9 +64,9 @@ This project was designed to be executed using [Firebase](https://firebase.googl
       Item Price
       - **qty** *Number*  
       Item sold quantity
-    - **name** **  
+    - **name** *String*  
     
-    - **phone** **  
-    
-    - **total** **  
-    
+    - **phone** *String*  
+    The user contact phone number
+    - **total** *Number*  
+    Total order price

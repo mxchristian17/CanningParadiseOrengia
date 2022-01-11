@@ -8,9 +8,9 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 
 ## Running the project
 
-1. First install Node.js on your OS from [https://nodejs.org/es/](https://nodejs.org/es/).
-2. Install Git from [https://git-scm.com/](https://git-scm.com/)
-3. We recommend you to use Visual Studio Code and its terminal for this project from [Visual Studio Code](https://code.visualstudio.com/download) (This is optional).
+1. First install [Node.js](https://nodejs.org/es/) on your OS (don´t forget to setup [Environment variables](https://bertofern.wordpress.com/2019/01/08/solucion-node-js-npm-no-reconocido-como-comando-interno-o-externo/)).
+2. Install [Git](https://git-scm.com/)
+3. We recommend you to use [Visual Studio Code](https://code.visualstudio.com/download) and its terminal for this project (This is optional).
 4. From your console run:
 
 > `cd {installation folder}` Position into the installation folder

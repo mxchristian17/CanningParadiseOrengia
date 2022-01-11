@@ -22,7 +22,7 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 > `npm install` Install required dependencies
 >
 > `cp .env.example .env` Copy de example **.env.example** file and rename it to **.env**  
-> *You need to complete the .env file created with the data of your Firebase connection (explained on Products database section)*
+> *At this point you need to complete the .env file created with the data of your Firebase connection (explained on Products database section)*
 >
 > `npm start` Run the server with the project
     
@@ -80,11 +80,37 @@ At this point you have created your database. Now you will need to create two co
       - **qty** *Number*  
       Item sold quantity
     - **name** *String*  
-    
+    The user Name
     - **phone** *String*  
     The user contact phone number
     - **total** *Number*  
     Total order price
+
+#### Configuration of Firebase database in your .env file
+
+To configure your database connection settings in your .env file follow the next steps:
+1. Open your [Firebase console](https://console.firebase.google.com/)
+2. Select your created project
+3. Go to **Project settings** in the left panel
+4. Scroll down until you see something like:  
+>// Your web app's Firebase configuration
+>
+>const firebaseConfig = {
+>
+>  apiKey: "AIzaSyDkRzVhRAqb3Oga0DIaFN663bfvHiIsVYg",
+>
+>  authDomain: "canningparadise.firebaseapp.com",
+>
+>  projectId: "canningparadise",
+>
+>  storageBucket: "canningparadise.appspot.com",
+>
+>  messagingSenderId: "654652979445",
+>
+>  appId: "1:654652979445:web:c2429b0a7e35005903adbc"
+>
+>};
+>
 
 ## Uploading products
 

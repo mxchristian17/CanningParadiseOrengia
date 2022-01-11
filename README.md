@@ -88,7 +88,8 @@ At this point you have created your database. Now you will need to create two co
 
 ### Configuration of Firebase database in your **.env** file
 
-To configure your database connection settings in your .env file follow the next steps:
+To configure your database connection settings in your .env file follow the next steps:  
+*(Notice you need to have your Firebase project created before doing this step like is explained in [Products database](#products-database)*
 1. Open your [Firebase console](https://console.firebase.google.com/)
 2. Select your created project
 3. Go to **Project settings** in the left panel

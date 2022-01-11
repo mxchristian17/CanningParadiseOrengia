@@ -96,13 +96,22 @@ To configure your database connection settings in your .env file follow the next
 ~~~
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDkRzVhRAqb3Oga0DIaFN663bfvHiIsVYg",
-  authDomain: "canningparadise.firebaseapp.com",
-  projectId: "canningparadise",
-  storageBucket: "canningparadise.appspot.com",
-  messagingSenderId: "654652979445",
-  appId: "1:654652979445:web:c2429b0a7e35005903adbc"
+  apiKey: "AIzaSyDkDzthRAqb3Oga5DI0FN663bfvHiIsVYg",
+  authDomain: "yourproject.firebaseapp.com",
+  projectId: "yourproject",
+  storageBucket: "yourproject.appspot.com",
+  messagingSenderId: "654896974545",
+  appId: "1:654896974545:web:c2435b0a7e32205903adbc"
 };
+~~~
+5. Complete your .env file with the previous data like:
+~~~
+REACT_APP_apiKey=AIzaSyDkDzthRAqb3Oga5DI0FN663bfvHiIsVYg
+REACT_APP_authDomain=yourproject.firebaseapp.com
+REACT_APP_projectId=yourproject
+REACT_APP_storageBucket=yourproject.appspot.com
+REACT_APP_messagingSenderId=654896974545
+REACT_APP_appId=1:654896974545:web:c2435b0a7e32205903adbc
 ~~~
 
 ## Uploading products

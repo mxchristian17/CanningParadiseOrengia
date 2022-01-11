@@ -26,7 +26,7 @@ const Cart = () => {
         const objOrder = {
             items: cart,
             total: cartTotal(),
-            name: contact.email,
+            name: contact.name,
             phone: contact.phone,
             email: contact.email,
             date: Timestamp.fromDate(new Date())

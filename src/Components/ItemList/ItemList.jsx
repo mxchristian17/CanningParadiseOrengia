@@ -13,7 +13,7 @@ const ItemList = (props) => {
 
     useEffect(() => {
         setLoading(true);
-        getProducts('category', '==', categoryId).then(products => {
+        getProducts('categoryId', '==', categoryId).then(products => {
             setListProduct(products)
         }).catch(error => {
             console.log(error)

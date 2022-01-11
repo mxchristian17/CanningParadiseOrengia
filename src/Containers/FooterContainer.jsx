@@ -2,6 +2,7 @@ import React from 'react';
 import { faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faHome, faIndustry, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const FooterContainer = (props) => {
     return (
@@ -44,13 +45,13 @@ const FooterContainer = (props) => {
                                 Productos
                             </h6>
                             <p>
-                                <a href="#/" className="text-reset">Máquinas</a>
+                                <Link className="text-reset" to="/category/cerradoras">Cerradoras</Link><br />
+                                <Link className="text-reset" to="/category/atmosfericas">Llenadoras atmosféricas</Link><br />
+                                <Link className="text-reset" to="/category/isobaricas">Llenadoras isobáricas</Link><br />
+                                <Link className="text-reset" to="/category/lineas">Lineas industriales</Link><br />
                             </p>
                             <p>
-                                <a href="#/" className="text-reset">Equipos de medición</a>
-                            </p>
-                            <p>
-                                <a href="#/" className="text-reset">Latas</a>
+                            <Link className="text-reset" to="/category/latas">Latas</Link>
                             </p>
                         </div>
                         <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">

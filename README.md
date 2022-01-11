@@ -6,6 +6,14 @@ CanningParadise is an E-commerce created for the final project of the React Js c
   - Year: 2021
   - Commission: 16995
 
+### Table of contents
+  - [Running the project](#running-the-project)
+  - [Products database](#products-database)
+  - [Configure Firebase in your .env file](#configuration-of-firebase-database-in-your-env-file)
+  - [Uploading products](#uploading-products)
+  - [Contributing rules](#contributing-rules)
+  - [Using the E-commerce](#using-the-e-commerce)
+
 ## Running the project
 
 1. First install [Node.js](https://nodejs.org/es/) on your OS (don´t forget to setup [Environment variables](https://bertofern.wordpress.com/2019/01/08/solucion-node-js-npm-no-reconocido-como-comando-interno-o-externo/)).
@@ -128,7 +136,8 @@ The project doesn´t have a control panel yet that allows to upload products fro
 
 Repeat the previous steps for every item you want to add to the database.
 
-# Contributing rules
+## Contributing rules
+
  Your contribution to this project is allways welcome. You only need to respect good programming practices.  
  The priority is to find and fix bugs in the code.  
  The next steps of the project will be:
@@ -136,3 +145,7 @@ Repeat the previous steps for every item you want to add to the database.
  - A user panel with buy history
  - A control panel that allows to upload new products
  - A review system that allows users to rate the products when they buy it
+
+## Using the E-commerce
+
+Here it will be explained how to use the E-commerce

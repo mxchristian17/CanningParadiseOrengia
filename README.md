@@ -117,4 +117,13 @@ REACT_APP_appId=1:654896974545:web:c2435b0a7e32205903adbc
 
 ## Uploading products
 
-The project doesn´t have a control panel yet that allows to upload products from there, so you will need to do that task directly from [Firebase](https://console.firebase.google.com/).
+The project doesn´t have a control panel yet that allows to upload products from there, so you will need to do that task directly from [Firebase](https://console.firebase.google.com/) following the next steps:
+1. Select the project
+2. Go to **Firestore Database** in the left panel
+3. Select the **items** collection
+4. Inside the items collection press **+ Add document**
+5. In the field *Document ID* select **Auto-ID**
+6. Create every field of the item like the structure defined in [Products Database](#products-database)
+7. **Save** the item
+
+Repeat the previous steps for every item you want to add to the database.

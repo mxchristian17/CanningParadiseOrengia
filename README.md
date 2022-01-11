@@ -123,7 +123,16 @@ The project doesn´t have a control panel yet that allows to upload products fro
 3. Select the **items** collection
 4. Inside the items collection press **+ Add document**
 5. In the field *Document ID* select **Auto-ID**
-6. Create every field of the item like the structure defined in [Products Database](#products-database)
+6. Create every field of the item like the structure defined in [Products Database](#products-database) (**items** *Collection*)
 7. **Save** the item
 
 Repeat the previous steps for every item you want to add to the database.
+
+# Contributing rules
+ Your contribution to this project is allways welcome. You only need to respect good programming practices.  
+ The priority is to find and fix bugs in the code.  
+ The next steps of the project will be:
+ - Login with admin and user levels
+ - A user panel with buy history
+ - A control panel that allows to upload new products
+ - A review system that allows users to rate the products when they buy it

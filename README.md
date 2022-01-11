@@ -21,9 +21,8 @@ CanningParadise is an E-commerce created for the final project of the React Js c
 >
 > `npm install` Install required dependencies
 >
-> `cp .env.example .env` Copy de example .env.example file and rename it to .env
->
->> You need to complete the .env file with the data of your firebase connection (explained on Products database section)
+> `cp .env.example .env` Copy de example .env.example file and rename it to .env  
+> *You need to complete the .env file with the data of your firebase connection (explained on Products database section)*
 >
 > `npm start` Run the server with the project
     

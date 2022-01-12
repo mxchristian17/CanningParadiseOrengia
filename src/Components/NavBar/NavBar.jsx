@@ -1,17 +1,47 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import CartContext from '../../Context/CartContext'
+import { getCategories } from '../../Services/Firebase/Firebase'
 
 
 const Nav = () => {
-    const { cart, category } = useContext(CartContext);
+    const { cart } = useContext(CartContext);
+    const [listCategories, setListCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const categoryLink = (categoryId, categoryName, dropdownItem = true) => {
-        const definedClass = dropdownItem ? "dropdown-item" : "nav-link"
-        if (categoryId === category) return <div className={definedClass + " text-primary"}>{ categoryName }</div>
-        return <Link to={"/category/" + categoryId } className={ definedClass }>{ categoryName }</Link>
-    }
+    const showCategories = loading ?
+    <li className="nav-item px-2">
+        <div className="nav-link">Loading categories...</div>
+    </li> :
+    listCategories.map((cat) => {
+        return cat.categories ? 
+        <li key={cat.id} className="nav-item dropdown px-2">
+            <a className="nav-link dropdown-toggle" href="../#" id="dispositivos" role="button" data-bs-toggle="dropdown" aria-expanded="false">{ cat.name }</a>
+            <ul className="dropdown-menu" aria-labelledby="maquinas">
+            { cat.categories.map((subCat, key) => { return <li key={key}>
+                    <NavLink to={"/category/" + subCat.link } className="dropdown-item" activeClassName="text-primary">{ subCat.name }</NavLink>
+                </li> }) }
+            </ul>
+        </li> :
+        <li key={cat.id} className="nav-item px-2">
+            <NavLink to={"/category/" + cat.link } className="nav-link" activeClassName="text-primary">{ cat.name }</NavLink>
+        </li>
+    })
+
+    useEffect(() => {
+        setLoading(true);
+        getCategories().then(categories => {
+            setListCategories(categories)
+        }).catch(error => {
+            console.log(error)
+        }).finally(() => {
+            setLoading(false)
+        })
+        return (
+            setLoading(true)
+        )
+    }, [setLoading])
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,42 +51,14 @@ const Nav = () => {
                 </Link>
                 <Link to="../" className="navbar-brand">Canning Paradise</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item px-2">
-                            <Link to="../" className="nav-link">Inicio</Link>
+                            <NavLink to="../" className="nav-link">Inicio</NavLink>
                         </li>
-                        <li className="nav-item dropdown px-2">
-                            <a className="nav-link dropdown-toggle" href="../#" id="maquinas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Máquinas
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="maquinas">
-                                <li>{categoryLink('cerradoras', 'Cerradoras')}</li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li>{categoryLink('atmosfericas', 'Llenadoras atmosféricas')}</li>
-                                <li>{categoryLink('isobaricas', 'Llenadoras isobáricas')}</li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li>{categoryLink('lineas', 'Lineas de enlatado industriales')}</li>
-                            </ul>
-                        </li>
-                        <li className="nav-item dropdown px-2">
-                            <a className="nav-link dropdown-toggle" href="../#" id="dispositivos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Equipos de medición
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="dispositivos">
-                                <li>{categoryLink('controlcarbonatacion', 'Medidor de carbonatación')}</li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li>{categoryLink('controlcierre', 'Medidor de cierre automático')}</li>
-                                <li>{categoryLink('oximetros', 'Medidor de oxígeno disuelto')}</li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li>{categoryLink('controlpresion', 'Medidor de presión')}</li>
-                            </ul>
-                        </li>
-                        <li className="nav-item">
-                        {categoryLink('latas', 'Latas', false)}
-                        </li>
+                        { showCategories }
                     </ul>
                     {cart.length > 0 && <div className="d-flex"><CartWidget /></div>}
                 </div>

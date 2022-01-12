@@ -3,8 +3,16 @@ import { Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import CartContext from '../../Context/CartContext'
 
+
 const Nav = () => {
-    const { cart } = useContext(CartContext);
+    const { cart, category } = useContext(CartContext);
+
+    const categoryLink = (categoryId, categoryName, dropdownItem = true) => {
+        const definedClass = dropdownItem ? "dropdown-item" : "nav-link"
+        if (categoryId === category) return <div className={definedClass + " text-primary"}>{ categoryName }</div>
+        return <Link to={"/category/" + categoryId } className={ definedClass }>{ categoryName }</Link>
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -25,12 +33,12 @@ const Nav = () => {
                                 Máquinas
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="maquinas">
-                                <li><Link to="/category/cerradoras" className="dropdown-item">Cerradoras</Link></li>
+                                <li>{categoryLink('cerradoras', 'Cerradoras')}</li>
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><Link to="/category/atmosfericas" className="dropdown-item">Llenadoras atmosféricas</Link></li>
-                                <li><Link to="/category/isobaricas" className="dropdown-item">Llenadoras isobáricas</Link></li>
+                                <li>{categoryLink('atmosfericas', 'Llenadoras atmosféricas')}</li>
+                                <li>{categoryLink('isobaricas', 'Llenadoras isobáricas')}</li>
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><Link to="/category/lineas" className="dropdown-item">Lineas de enlatado industriales</Link></li>
+                                <li>{categoryLink('lineas', 'Lineas de enlatado industriales')}</li>
                             </ul>
                         </li>
                         <li className="nav-item dropdown px-2">
@@ -38,16 +46,16 @@ const Nav = () => {
                                 Equipos de medición
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="dispositivos">
-                                <li><Link to="/category/controlcarbonatacion" className="dropdown-item">Medidor de carbonatación</Link></li>
+                                <li>{categoryLink('controlcarbonatacion', 'Medidor de carbonatación')}</li>
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><Link to="/category/controlcierre" className="dropdown-item">Medidor de cierre automático</Link></li>
-                                <li><Link to="/category/oximetros" className="dropdown-item">Medidor de oxígeno disuelto</Link></li>
+                                <li>{categoryLink('controlcierre', 'Medidor de cierre automático')}</li>
+                                <li>{categoryLink('oximetros', 'Medidor de oxígeno disuelto')}</li>
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><Link to="/category/controlpresion" className="dropdown-item">Medidor de presión</Link></li>
+                                <li>{categoryLink('controlpresion', 'Medidor de presión')}</li>
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <Link to="/category/latas" className="nav-link">Latas</Link>
+                        {categoryLink('latas', 'Latas', false)}
                         </li>
                     </ul>
                     {cart.length > 0 && <div className="d-flex"><CartWidget /></div>}

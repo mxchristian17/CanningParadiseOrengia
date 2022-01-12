@@ -6,7 +6,7 @@ import CartContext from '../../Context/CartContext'
 import { getDoc, doc, addDoc, collection, Timestamp, writeBatch } from 'firebase/firestore'
 import { db } from '../../Services/Firebase/Firebase'
 import { Link } from 'react-router-dom';
-import OrderForm from './OrderForm'
+import OrderForm from '../OrderForm/OrderForm'
 
 const Cart = () => {
     const { cart, onRemove, onModify, cartTotal, clearCart } = useContext(CartContext);

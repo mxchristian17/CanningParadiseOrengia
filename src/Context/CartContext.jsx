@@ -5,7 +5,9 @@ const CartContext = React.createContext()
 
 
 export const CartContextProvider = ({children}) => {
+
     const [cart, setCart] = useState([]);
+    
     const onModify = (item, qty, stock, price, name, addOrSubtract = 1) => {
         let tempCart = [...cart];
         const itemFound = Object.keys(tempCart).find(key => tempCart[key].item === item);

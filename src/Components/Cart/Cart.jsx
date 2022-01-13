@@ -16,7 +16,8 @@ const Cart = () => {
     const [contact,  setContact] = useState({
         name:'',
         phone:'',
-        email:''
+        email:'',
+        status: false
     })
     const [processingOrder, setProcessingOrder] = useState(false)
     const [idLastOrder, setIdLastOrder] = useState(false)
@@ -91,13 +92,11 @@ const Cart = () => {
             {listProduct.length > 0 ?
                 <div>
                     <p className="h6 text-success">Total: ${cartTotal()}</p>
-                    {showForm && <OrderForm contact={ contact } setContact = { setContact } />}
+                    {showForm ? <OrderForm contact={ contact } setContact={ setContact } confirmOrder={ confirmOrder } /> :
                     <div className="btn-group pb-4" role="group" aria-label="Order buttons">
-                        {showForm ? <div className="btn btn-outline-primary" onClick={() => { confirmOrder() }}>Confirmar compra</div>
-                        :
-                        <div className="btn btn-outline-primary" onClick={() => { setShowForm(true) }}>Agregar contacto</div>}
+                        <div className="btn btn-outline-primary" onClick={() => { setShowForm(true) }}>Agregar contacto</div>
                         <div className="btn btn-outline-danger" onClick={() => { clearCart() }}>Cancelar compra</div>
-                    </div>
+                    </div> }
                 </div>
                 :
                 <div className="row row-cols-3 justify-content-center my-1">

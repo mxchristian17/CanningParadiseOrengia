@@ -4,12 +4,12 @@ import CartContext from '../../Context/CartContext';
 
 const Item = (props) => {
     const { cart } = useContext(CartContext);
-    const [shopped, setShopped] = useState(0);
+    const [inCart, setInCart] = useState(0);
     useEffect(() => {
-        let inCart = 0;
-        cart.filter(i => i.item === props.item.id).map(i => inCart = inCart+i.qty);
-        setShopped(inCart);
-    }, [setShopped, cart, props.item.id]);
+        let qtyInCart = 0;
+        cart.filter(i => i.item === props.item.id).map(i => qtyInCart = qtyInCart+i.qty);
+        setInCart(qtyInCart);
+    }, [setInCart, cart, props.item.id]);
     return (
         <div className="col col-md-6 col-lg-3 p-2">
             <div className="w-100 border bg-light py-3 rounded justify-content-center">
@@ -26,10 +26,10 @@ const Item = (props) => {
                         <span className="text-success">${props.item.price.toFixed(2)} por unidad</span>
                     </div>
                 </div>
-                {shopped !== 0 ?
+                {inCart !== 0 ?
                 <div>
                     <div className="row">
-                        <div className="text-secondary"><small >{shopped} en el carro de {props.item?.stock} disponibles</small></div>
+                        <div className="text-secondary"><small >{inCart} en el carro de {props.item?.stock} disponibles</small></div>
                     </div>
                 </div>
                 :

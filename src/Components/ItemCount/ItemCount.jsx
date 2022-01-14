@@ -1,32 +1,17 @@
-import React, {useState, useContext} from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import React, { useState, useContext } from 'react';
 import CartContext from '../../Context/CartContext';
 
 const ItemCount = (props) => {
-    const { cart } = useContext(CartContext);
+    const { item, stock, initial, price, name } = props
     const { onModify } = useContext(CartContext);
-    const [qty, setQty] = useState(parseInt(props.initial));
-    const [availableStock, setAvailableStock] = useState(props.stock);
+    const startingQty = stock < initial ? stock : initial
+    const [qty, setQty] = useState(startingQty);
 
-    const add = () => {
-        if(qty < availableStock) setQty(qty+1);
-    }
-    const sub = () => {
-        if(qty > 0) setQty(qty-1);
-    }
-    const addToCart = () => {
-        onModify(props.item, qty, props.stock, props.price, props.name, 1);
-        setAvailableStock(availableStock-qty);
-        if(qty > availableStock-qty) setQty(availableStock-qty);
-    }
+    const add = () => { if(qty < stock) setQty(qty+1) }
+    const sub = () => { if(qty > 0) setQty(qty-1); }
+    const addToCart = () => { onModify(item, qty, stock, price, name, 1) }
+
     
-    useEffect(()=>{
-        let inCart = 0;
-        cart.filter(i => i.item === props.item).map(i => inCart = inCart+i.qty);
-        setAvailableStock(props.stock-inCart)
-
-    }, [cart, props.item, props.stock])
-
     return (
         <div>
             <div className="row">
@@ -35,10 +20,10 @@ const ItemCount = (props) => {
                 <div className="col-3 text-start"><button className="btn btn-primary btn-sm" onClick={() => add()}>+</button></div>
             </div>
             <div className="row">
-                <div className="text-secondary"><small >{(props.stock>availableStock) ? props.stock-availableStock + ' en el carro de ' + props.stock + ' disponibles' : "\u00A0"}</small></div>
+                <div className="text-secondary"><small >Hay { stock } disponibles</small></div>
             </div>
             <div className="row my-2">
-                <div className="col px-4"><button className="btn btn-outline-primary w-100" onClick={() => ((props.stock > 0 & qty > 0 & qty <= availableStock) ? addToCart() : undefined)}>Añadir al carrito</button></div>
+                <div className="col px-4"><button className="btn btn-outline-primary w-100" onClick={() => ((qty > 0 & qty <= stock) ? addToCart() : undefined)}>Añadir al carrito</button></div>
             </div>
         </div>
     )

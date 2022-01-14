@@ -1,36 +1,17 @@
 import React from 'react'
-import { useParams } from 'react-router';
-import { useState, useEffect } from 'react/cjs/react.development'
 import ItemDetail from '../Components/ItemDetail/ItemDetail';
-import LoadingItemDetail from '../Components/ItemDetail/LoadingItemDetail';
-import { getDoc, doc } from 'firebase/firestore'
-import { db } from '../Services/Firebase/Firebase'
 
 const ItemDetailContainer = (props) => {
-    const [product, setProduct] = useState([]);
-
-    const [loading, setLoading] = useState(true);
-    const { itemId } = useParams();
-
-    useEffect(() => {
-        setLoading(true)
-        getDoc(doc(db, 'items', itemId)).then((QuerySnapshot) => {
-            const product = {id: QuerySnapshot.id, ...QuerySnapshot.data()}
-            setProduct(product)
-        }).catch((error) => {
-            console.log('Error buscando el item', error)
-        }).finally(() => {
-            setLoading(false);
-        })
-
-        return (
-            setLoading(true)
-        )
-    }, [itemId, setLoading])
-
+    
     return (
         <div className="container">
-            {loading ? <LoadingItemDetail /> : <ItemDetail product={product} />}
+            <div className="row row-cols-1 row-cols-md-1 row-cols-lg-2 justify-content-center">
+                <div className="col col-md col-lg-9 p-2">
+                    <div className="w-100 border bg-light py-3 rounded justify-content-center">
+                        <ItemDetail />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

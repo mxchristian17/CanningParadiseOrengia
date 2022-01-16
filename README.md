@@ -12,6 +12,7 @@ CanningParadise is an E-commerce created for the final project of the React Js c
   - [Products database](#products-database)
   - [Configure Firebase in your .env file](#configuration-of-firebase-database-in-your-env-file)
   - [Uploading products](#uploading-products)
+  - [E-commerce main components](#E-commerce-main-components)
   - [Contributing rules](#contributing-rules)
 
 ## Running the project

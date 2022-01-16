@@ -34,32 +34,41 @@ const Cart = () => {
         }
 
         const batch = writeBatch(db)
+        const batchUpdates = []
         const outOfStock = []
-
-        objOrder.items.forEach((prod, idx, array) => {
-            getDoc(doc(db, 'items', prod.item)).then((DocumentSnapshot) => {
-                if(DocumentSnapshot.data().stock >= prod.qty){
-                    batch.update(doc(db, 'items', DocumentSnapshot.id), {
-                        stock: DocumentSnapshot.data().stock - prod.qty
-                    })
-                } else {
-                    outOfStock.push( {id: DocumentSnapshot.id, ...DocumentSnapshot.data() })
-                }
-            })
-        })
-
-        if(outOfStock.length === 0 ) {
-            addDoc(collection(db, 'orders'), objOrder).then(({ id }) => {
-                batch.commit().then(() => {
-                    setIdLastOrder(id)
-                    clearCart()
-                    setProcessingOrder(false)
+        var promises = [];
+        
+        objOrder.items.forEach((prod) => {
+            promises.push(
+                getDoc(doc(db, 'items', prod.item)).then((documentSnapshot) => {
+                    if(documentSnapshot.data().stock >= prod.qty){
+                        batchUpdates.push({ id: documentSnapshot.id, stock : documentSnapshot.data().stock - prod.qty })
+                    } else {
+                        outOfStock.push({ id: documentSnapshot.id, ...documentSnapshot.data() })
+                    }
                 })
-            })
-        } else {
-            setIdLastOrder('El stock ya no está disponible. Por favor vuelva a ejecutar su compra')
-        }
-
+            )
+        })
+        Promise.all(promises).then(() => {
+            if( outOfStock.length === 0 ) {
+                batchUpdates.forEach((p) => {
+                    batch.update(doc(db, 'items', p.id), {
+                        stock: p.stock
+                    })
+                })
+                addDoc(collection(db, 'orders'), objOrder).then(({ id }) => {
+                    batch.commit().then(() => {
+                        setIdLastOrder(id)
+                        clearCart()
+                        setProcessingOrder(false)
+                    })
+                }).catch((error) => {
+                    console.log('Error ejecutando la orden ' + error)
+                })
+            } else {
+                setIdLastOrder('El stock ya no está disponible. Por favor vuelva a ejecutar su compra')
+            }
+        });
     }
 
     useEffect(() => {

@@ -1,6 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from '../../Services/Firebase/Firebase'
@@ -8,6 +6,7 @@ import { Link } from 'react-router-dom';
 import LoadingItemDetail from '../../Components/ItemDetail/LoadingItemDetail';
 import ItemCount from '../ItemCount/ItemCount'
 import CartContext from '../../Context/CartContext';
+import RateAverage from '../RateAverage/RateAverage';
 
 
 const ItemDetail = (props) => {
@@ -55,26 +54,7 @@ const ItemDetail = (props) => {
                         <h3 className="text-start">{product.name}</h3>
                     </div>
                 </div>
-                <div className="row" style={{height: 1 + "em"}}>
-                    <div className="col">
-                        <div className="position-relative">
-                            <div className="d-flex px-0 position-absolute top-0 start-0 opacity-25">
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                            </div>
-                            <div className="d-flex px-0 position-absolute top-0 start-0 text-primary" style={{maxWidth: 0.99*parseFloat(product.rateAverage) + "em", overflow: "hidden"}}>
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                                <FontAwesomeIcon className="fa-sm px-0 mx-0" icon={faStar} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <RateAverage rateAverage={ product.rateAverage } />
                 <div className="row">
                     <div className="col text-start">
                         <small className="text-secondary">{product.reviews} opiniones</small>

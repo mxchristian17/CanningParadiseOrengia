@@ -5,7 +5,7 @@ CanningParadise is an E-commerce created for the final project of the React Js c
   - Student: Orengia Christian
   - Year: 2021
   - Commission: 16995
-  - **[Example of use video](public/TutorialCanningParadise.mp4)**
+  - **[Example of use video](public/UsingCanningParadise.mp4)**
 
 ### Table of contents
   - [Running the project](#running-the-project)

@@ -59,16 +59,15 @@ const Cart = () => {
                 })
                 addDoc(collection(db, 'orders'), objOrder).then(({ id }) => {
                     batch.commit().then(() => {
-                        if(componentMounted) setIdLastOrder(id)
+                        if(componentMounted) {setIdLastOrder(id);setProcessingOrder(false)}
                     })
                 }).catch((error) => {
                     console.log('Error ejecutando la orden ' + error)
                 })
             } else {
-                if(componentMounted) setIdLastOrder('El stock ya no está disponible. Por favor vuelva a ejecutar su compra')
+                if(componentMounted) {setIdLastOrder('El stock ya no está disponible. Por favor vuelva a ejecutar su compra');setProcessingOrder(false)}
             }
             clearCart()
-            setProcessingOrder(false)
         });
     }
 

@@ -116,8 +116,8 @@ To configure your database connection settings in your .env file follow the next
 2. Select your created project
 3. Go to **Project settings** in the left panel
 4. Inside Your apps section select **</>** to create a web App
-5. Register the name of the app and select Register App button
-6. Click continue to console
+5. Register the name of the app and select **Register App** button
+6. Click **Continue to console**
 7. Scroll down until you see something like:  
 ~~~
 // Your web app's Firebase configuration

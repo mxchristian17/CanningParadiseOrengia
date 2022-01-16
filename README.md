@@ -115,7 +115,10 @@ To configure your database connection settings in your .env file follow the next
 1. Open your [Firebase console](https://console.firebase.google.com/)
 2. Select your created project
 3. Go to **Project settings** in the left panel
-4. Scroll down until you see something like:  
+4. Inside Your apps section select **</>** to create a web App
+5. Register the name of the app and select Register App button
+6. Click continue to console
+7. Scroll down until you see something like:  
 ~~~
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -127,7 +130,7 @@ const firebaseConfig = {
   appId: "1:654896974545:web:c2435b0a7e32205903adbc"
 };
 ~~~
-5. Complete your .env file with the previous data like:
+8. Complete your .env file with the previous data like:
 ~~~
 REACT_APP_apiKey=AIzaSyDkDzthRAqb3Oga5DI0FN663bfvHiIsVYg
 REACT_APP_authDomain=yourproject.firebaseapp.com

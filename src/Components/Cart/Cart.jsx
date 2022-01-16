@@ -1,12 +1,12 @@
 import React, {useState, useContext} from 'react'
-import CartItem from '../CartItem/CartItem'
-import { useEffect } from 'react/cjs/react.development'
-import LoadingItemList from '../ItemList/LoadingItemList'
 import CartContext from '../../Context/CartContext'
+import { useEffect } from 'react/cjs/react.development'
 import { getDoc, doc, addDoc, collection, Timestamp, writeBatch } from 'firebase/firestore'
 import { db } from '../../Services/Firebase/Firebase'
 import { Link } from 'react-router-dom';
+import CartItem from '../CartItem/CartItem'
 import OrderForm from '../OrderForm/OrderForm'
+import LoadingItemList from '../ItemList/LoadingItemList'
 
 const Cart = () => {
     const { cart, onRemove, onModify, cartTotal, clearCart } = useContext(CartContext);

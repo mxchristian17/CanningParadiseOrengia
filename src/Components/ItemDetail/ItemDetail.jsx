@@ -52,7 +52,7 @@ const ItemDetail = (props) => {
                 <div className="row">
                     <div className="col">
                         <div className="text-secondary text-start"><small>{product.sold} vendidos</small></div>
-                        <h3 className="text-start">Detalle de {product.name}</h3>
+                        <h3 className="text-start">{product.name}</h3>
                     </div>
                 </div>
                 <div className="row" style={{height: 1 + "em"}}>

@@ -8,7 +8,6 @@ import { getCategories } from '../../Services/Firebase/Firebase'
 const Nav = () => {
 
     const { cart } = useContext(CartContext);
-    
     const [listCategories, setListCategories] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -43,7 +42,7 @@ const Nav = () => {
         return (
             setLoading(true)
         )
-    }, [setLoading])
+    }, [setLoading, setListCategories])
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

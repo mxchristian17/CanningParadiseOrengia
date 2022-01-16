@@ -59,13 +59,10 @@ const FooterContainer = (props) => {
                                 Links útiles
                             </h6>
                             <p>
-                                <a href="#/" className="text-reset">Términos y condiciones</a>
+                                <Link className="text-reset" to="/tyc">Términos y condiciones</Link>
                             </p>
                             <p>
-                                <a href="#/" className="text-reset">Configuración</a>
-                            </p>
-                            <p>
-                                <a href="#/" className="text-reset">Preguntas frecuentes</a>
+                            <Link className="text-reset" to="/faqs">Preguntas frecuentes</Link>
                             </p>
                         </div>
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">

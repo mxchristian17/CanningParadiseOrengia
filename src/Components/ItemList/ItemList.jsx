@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { useEffect } from 'react/cjs/react.development'
 import Item from '../Item/Item'
 import LoadingItemList from '../../Components/ItemList/LoadingItemList'
 import { getProducts } from '../../Services/Firebase/Firebase'
@@ -8,9 +7,9 @@ import { Link } from 'react-router-dom';
 
 const ItemList = (props) => {
     
+    const { categoryId } = useParams();
     const [listProduct, setListProduct] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { categoryId } = useParams();
 
     useEffect(() => {
         setLoading(true);
@@ -29,7 +28,7 @@ const ItemList = (props) => {
 
     return (
         loading ? <LoadingItemList /> :
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center pb-4">
             {
             listProduct.length > 0 ? listProduct.map(i => i.stock > 0 && <Item key={i.id} item={i} />) :
             categoryId ? <div className="pb-4">

@@ -92,6 +92,19 @@ At this point you have created your database. Now you will need to create two co
     The user contact phone number
     - **total** *Number*  
     Total order price
+  - **categories** *Collection*
+    - **link** *String*  
+    The identifier for routing of the category
+    - **name** *String*  
+    The name of the category
+    - **position** *Number*  
+    A number to order the position in the NavBar
+    - **Categories** *Array*  
+    An object with the subcategories for dropdown menu in NavBar
+      - **link** *String*  
+      The identifier for routing of the subcategory
+      - **name** *String*  
+      The name of the subcategory
 
 ### Configuration of Firebase database in your **.env** file
 

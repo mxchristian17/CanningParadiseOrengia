@@ -150,13 +150,13 @@ Repeat the previous steps for every item you want to add to the database.
 
 ## E-commerce main components
 
-- NavBar
+- **NavBar**
   - This component shows the categories of the Firestore Database and the CartWidget. The CartWidget is showed only if the Cart has items inside.
-- ItemDetail
+- **ItemDetail**
   - The ItemDetail component is called when the path of the route is *'/item/:itemId'*. It shows the detailed information of the item selected. Inside this component it is placed the ItemCount Component that allows to select the amount of the item that user wants to purchase. When the selected item is alredy in the Cart, the ItemCount component is hided and is showed a button that send you to the Cart route.
-- ItemList
+- **ItemList**
   - Inside the ItemList, will be shown the items of the catalog filtered by category if it´s defined. If category isn´t defined you will see the whole catalog of products. By default only the items with stock > 0 will be displayed.
-- Cart
+- **Cart**
   - The Cart is accessible clicking in the CartWidget button located in the NavBar or clicking in the *End purchase* button that user can see in the ItemDetail component of a product that is alredy in the Cart. In the Cart, the user can see the list of the items selected to be purchased, can edit the quantities, clear the cart or confirm the purchase Order. Before to confirm the purchase, the user will need to complete the contact information to be stored in the order register of the Firestore Database.
 
 

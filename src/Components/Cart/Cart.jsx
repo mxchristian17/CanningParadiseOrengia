@@ -21,6 +21,7 @@ const Cart = () => {
     })
     const [processingOrder, setProcessingOrder] = useState(false)
     const [idLastOrder, setIdLastOrder] = useState(false)
+    const [componentMounted, setComponentMounted] = useState();
     const confirmOrder = () => {
         setProcessingOrder(true)
 
@@ -58,18 +59,25 @@ const Cart = () => {
                 })
                 addDoc(collection(db, 'orders'), objOrder).then(({ id }) => {
                     batch.commit().then(() => {
-                        setIdLastOrder(id)
-                        clearCart()
-                        setProcessingOrder(false)
+                        if(componentMounted) setIdLastOrder(id)
                     })
                 }).catch((error) => {
                     console.log('Error ejecutando la orden ' + error)
                 })
             } else {
-                setIdLastOrder('El stock ya no está disponible. Por favor vuelva a ejecutar su compra')
+                if(componentMounted) setIdLastOrder('El stock ya no está disponible. Por favor vuelva a ejecutar su compra')
             }
+            clearCart()
+            setProcessingOrder(false)
         });
     }
+
+    useEffect(() => {
+        setComponentMounted(true)
+        return () => {
+            setComponentMounted(false)
+        };
+    }, []);
 
     useEffect(() => {
         setLoading(true)
@@ -86,7 +94,6 @@ const Cart = () => {
             })
         })
         cart.length === 0 && setLoading(false);
-
     }, [setLoading, cart])
     return (
         loading ? <LoadingItemList /> :
